@@ -5,10 +5,8 @@ class UsuarioDAO{
     //Crud - Create //
     public function create(PedalaAi $user){
         try{
-            $sql = "INSERT INTO pedala_ai_user (pedala_ai_user, pedala_ai_nome, pedala_ai_data_nasc, pedala_ai_email, pedala_ai_telefone, pedala_ai_tipo_sangue, 
-            pedala_ai_alergias, pedala_ai_contato_emer, pedala_ai_convenio, pedala_ai_medicacoes, pedala_ai_password) 
-            VALUES (:pedala_ai_user, :pedala_ai_nome, :pedala_ai_data_nasc, :pedala_ai_email, :pedala_ai_telefone, :pedala_ai_tipo_sangue, 
-            :pedala_ai_alergias, :pedala_ai_contato_emer, :pedala_ai_convenio, :pedala_ai_medicacoes, :pedala_ai_password)";
+            $sql = "INSERT INTO pedala_ai_user (pedala_ai_user, pedala_ai_nome, pedala_ai_data_nasc, pedala_ai_email, pedala_ai_telefone, pedala_ai_tipo_sangue, pedala_ai_alergias, pedala_ai_contato_emer, pedala_ai_convenio, pedala_ai_medicacoes, pedala_ai_password) 
+            VALUES (:pedala_ai_user, :pedala_ai_nome, :pedala_ai_data_nasc, :pedala_ai_email, :pedala_ai_telefone, :pedala_ai_tipo_sangue, :pedala_ai_alergias, :pedala_ai_contato_emer, :pedala_ai_convenio, :pedala_ai_medicacoes, :pedala_ai_password)";
             $p_sql = Conexao::getConexao()->prepare($sql);
             $p_sql-> bindValue(":pedala_ai_user", $user->getUser());
             $p_sql-> bindValue(":pedala_ai_nome", $user->getNome());
@@ -32,7 +30,7 @@ class UsuarioDAO{
     public function read() {
         try{
 
-            $sql = "SELECT * FROM pedala_ai_user ORDER BY nome ASC";
+            $sql = "SELECT * FROM pedala_ai_user ORDER BY pedala_ai_nome ASC";
             $result = Conexao::getConexao()->query($sql);
 
             $lista = $result->fetchAll(PDO::FETCH_ASSOC);

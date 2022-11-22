@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-md-2">
                     <label for="pedala_ai_telefone">Telefone: </label>
-                    <input type="tel" name="pedala_ai_telefone" id="pedala_ai_telefone" placeholder="(XX) X XXXX-XXXX" pattern="([0-9]{2}) [0-9]{1} [0-9]{4}-[0-9]{4}" class="form-control" require/>
+                    <input type="tel" name="pedala_ai_telefone" id="pedala_ai_telefone" class="form-control" require/>
                 </div>
                 <div class="col-md-2">
                     <label for="pedala_ai_tipo_sangue">Tipo Sanguíneo: </label>
