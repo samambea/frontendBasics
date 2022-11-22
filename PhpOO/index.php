@@ -10,42 +10,68 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
-    <style>
-        .row{
-            padding: 10px;
-        }
-    </style>
-
+ <!--falta deixar bonitinho, mas ta aqui :)    -b-->
 </head>
 <body>
-    <div class="container">
+    <div class="container-sm border">
         <form action="control/UsuarioController.php" method="post">
-            <div class="row">
                 <div class="col-md-3">
-                    <label for="nome">Nome: </label>
-                    <input type="text" name="nome" id="nome" class="form-control" require/>
+                    <label for="pedala_ai_user">Usuário: </label>
+                    <input type="text" name="pedala_ai_user" id="pedala_ai_user" class="form-control" require/>
                 </div>
-                <div class="col-md-5">
-                    <label for="sobrenome">Sobrenome: </label>
-                    <input type="text" name="sobrenome" id="sobrenome" class="form-control" require/>
-                </div>
-                <div class="col-md-2">
-                    <label for="nome">Idade: </label>
-                    <input type="text" name="idade" id="idade" class="form-control" require/>
+                <div class="col-md-3">
+                    <label for="pedala_ai_nome">Nome: </label>
+                    <input type="text" name="pedala_ai_nome" id="pedala_ai_nome" class="form-control" require/>
                 </div>
                 <div class="col-md-2">
-                    <label for="nome">Sexo: </label>
-                    <select name="sexo" id="sexo" class="form-control" require>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                        <option value="Null">Prefiro não declarar</option>
+                    <label for="pedala_ai_data_nasc">Data de Nascimento: </label>
+                    <input type="date" name="pedala_ai_data_nasc" id="pedala_ai_data_nasc" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_email">E-mail: </label>
+                    <input type="email" name="pedala_ai_email" id="pedala_ai_email" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_telefone">Telefone: </label>
+                    <input type="tel" name="pedala_ai_telefone" id="pedala_ai_telefone" placeholder="(XX) X XXXX-XXXX" pattern="([0-9]{2}) [0-9]{1} [0-9]{4}-[0-9]{4}" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_tipo_sangue">Tipo Sanguíneo: </label>
+                    <select name="pedala_ai_tipo_sangue" id="pedala_ai_tipo_sangue" class="form-control" require>
+                        <option value="Apos">A+</option>
+                        <option value="Aneg">A-</option>
+                        <option value="ABpos">AB+</option>
+                        <option value="ABneg">AB-</option>
+                        <option value="Bpos">B+</option>
+                        <option value="Bneg">B-</option>
+                        <option value="Opos">O+</option>
+                        <option value="Oneg">O-</option>
                     </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="pedala_ai_alergias">Alergias: </label>
+                    <input type="text" name="pedala_ai_alergias" id="pedala_ai_alergias" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_contato_emer">Contato de Emergência: </label>
+                    <input type="text" name="pedala_ai_contato_emer" id="pedala_ai_contato_emer" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_convenio">Convênio </label>
+                    <input type="text" name="pedala_ai_convenio" id="pedala_ai_convenio" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_medicacoes">Medicações: </label>
+                    <input type="text" name="pedala_ai_medicacoes" id="pedala_ai_medicacoes" class="form-control" require/>
+                </div>
+                <div class="col-md-2">
+                    <label for="pedala_ai_password">Senha: </label>
+                    <input type="password" name="pedala_ai_password" id="pedala_ai_password" minlenght ="8" class="form-control" require/>
                 </div>
                 <div class="col-md-2">
                     <br>
                     <button type="submit" class="btn btn-primary" name="cadastrar">Cadastrar</button>
                 </div>
-            </div>
         </form>
     </div>
     

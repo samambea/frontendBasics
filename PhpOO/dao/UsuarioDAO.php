@@ -3,17 +3,26 @@
 class UsuarioDAO{
 
     //Crud - Create //
-    public function create(Usuario $usuario){
+    public function create(PedalaAi $user){
         try{
-            $sql = "INSERT INTO usuario (nome, sobrenome, idade, sexo) VALUES (:nome, :sobrenome, :idade, :sexo)";
+            $sql = "INSERT INTO pedala_ai_user (pedala_ai_user, pedala_ai_nome, pedala_ai_data_nasc, pedala_ai_email, pedala_ai_telefone, pedala_ai_tipo_sangue, 
+            pedala_ai_alergias, pedala_ai_contato_emer, pedala_ai_convenio, pedala_ai_medicacoes, pedala_ai_password) 
+            VALUES (:pedala_ai_user, :pedala_ai_nome, :pedala_ai_data_nasc, :pedala_ai_email, :pedala_ai_telefone, :pedala_ai_tipo_sangue, 
+            :pedala_ai_alergias, :pedala_ai_contato_emer, :pedala_ai_convenio, :pedala_ai_medicacoes, :pedala_ai_password)";
             $p_sql = Conexao::getConexao()->prepare($sql);
-            $p_sql-> bindValue(":nome", $usuario->getNome());
-            $p_sql-> bindValue(":sobrenome", $usuario->getSobrenome());
-            $p_sql-> bindValue(":idade", $usuario->getIdade());
-            $p_sql-> bindValue(":sexo", $usuario->getSexo());
+            $p_sql-> bindValue(":pedala_ai_user", $user->getUser());
+            $p_sql-> bindValue(":pedala_ai_nome", $user->getNome());
+            $p_sql-> bindValue(":pedala_ai_data_nasc", $user->getData_nasc());
+            $p_sql-> bindValue(":pedala_ai_email", $user->getEmail());
+            $p_sql-> bindValue(":pedala_ai_telefone", $user->getTelefone());
+            $p_sql-> bindValue(":pedala_ai_tipo_sangue", $user->getTipo_sangue());
+            $p_sql-> bindValue(":pedala_ai_alergias", $user->getAlergias());
+            $p_sql-> bindValue(":pedala_ai_contato_emer", $user->getContato_emer());
+            $p_sql-> bindValue(":pedala_ai_convenio", $user->getConvenio());
+            $p_sql-> bindValue(":pedala_ai_medicacoes", $user->getMedicacoes());
+            $p_sql-> bindValue(":pedala_ai_password", $user->getPassword());
 
             return $p_sql->execute();
-
         }
 
         catch(Exception $e){
@@ -23,7 +32,7 @@ class UsuarioDAO{
     public function read() {
         try{
 
-            $sql = "SELECT * FROM usuario ORDER BY nome ASC";
+            $sql = "SELECT * FROM pedala_ai_user ORDER BY nome ASC";
             $result = Conexao::getConexao()->query($sql);
 
             $lista = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -40,21 +49,34 @@ class UsuarioDAO{
             }
     }
 
-    public function update(Usuario $usuario){
+    public function update(PedalaAi $user){
         try{
-            $sql = "UPDATE usuario SET
-            nome = :nome,
-            sobrenome = :sobrenome,
-            idade = :idade,
-            sexo = :sexo
+            $sql = "UPDATE pedala_ai_user SET
+            pedala_ai_nome = :pedala_ai_nome,
+            pedala_ai_data_nasc = :pedala_ai_data_nasc,
+            pedala_ai_email = :pedala_ai_email,
+            pedala_ai_telefone = :pedala_ai_telefone,
+            pedala_ai_tipo_sangue = :pedala_ai_tipo_sangue,
+            pedala_ai_alergias = :pedala_ai_alergias,
+            pedala_ai_contato_emer = :pedala_ai_contato_emer,
+            pedala_ai_convenio = :pedala_ai_convenio,
+            pedala_ai_medicacoes = :pedala_ai_medicacoes,
+            pedala_ai_password = :pedala_ai_password
 
-            WHERE id = :id";
+            WHERE pedala_ai_id = :pedala_ai_id";
             $p_sql = Conexao::getConexao()->prepare($sql);
-            $p_sql->bindValue(":nome", $usuario->getNome());
-            $p_sql->bindValue(":sobrenome", $usuario->getSobrenome());
-            $p_sql->bindValue(":idade", $usuario->getIdade());
-            $p_sql->bindValue(":sexo", $usuario->getSexo());
-            $p_sql->bindValue(":id", $usuario->getId());
+            $p_sql-> bindValue(":pedala_ai_user", $user->getUser());
+            $p_sql-> bindValue(":pedala_ai_nome", $user->getNome());
+            $p_sql-> bindValue(":pedala_ai_data_nasc", $user->getData_nasc());
+            $p_sql-> bindValue(":pedala_ai_email", $user->getEmail());
+            $p_sql-> bindValue(":pedala_ai_telefone", $user->getTelefone());
+            $p_sql-> bindValue(":pedala_ai_tipo_sangue", $user->getTipo_sangue());
+            $p_sql-> bindValue(":pedala_ai_alergias", $user->getAlergias());
+            $p_sql-> bindValue(":pedala_ai_contato_emer", $user->getContato_emer());
+            $p_sql-> bindValue(":pedala_ai_convenio", $user->getConvenio());
+            $p_sql-> bindValue(":pedala_ai_medicacoes", $user->getMedicacoes());
+            $p_sql-> bindValue(":pedala_ai_password", $user->getPassword());
+            $p_sql->bindValue(":pedala_ai_id", $user->getId());
             return $p_sql->execute();
         }
         catch(Exception $e){
@@ -63,11 +85,11 @@ class UsuarioDAO{
         }
     }
 
-    public function delete(Usuario $usuario){
+    public function delete(PedalaAi $user){
         try{
-            $sql="DELETE FROM usuario WHERE id = :id";
+            $sql="DELETE FROM pedala_ai_user WHERE pedala_ai_id = :pedala_ai_id";
             $p_sql = Conexao::getConexao()->prepare($sql);
-            $p_sql->bindValue(":id", $usuario->getId());
+            $p_sql->bindValue(":pedala_ai_id", $user->getId());
             return $p_sql->execute();
         }
         catch(Exception $e){
@@ -75,14 +97,20 @@ class UsuarioDAO{
     }
 
     private function listaUsuarios($row){
-        $usuario = new Usuario();
-        $usuario->setId($row['id']);
-        $usuario->setNome($row['nome']);
-        $usuario->setSobrenome($row['sobrenome']);
-        $usuario->setIdade($row['idade']);
-        $usuario->setSexo($row['sexo']);
-
-        return $usuario;
+        $user = new PedalaAi();
+        $user->setId($row['pedala_ai_id']);
+        $user->setUser($row['pedala_ai_user']);
+        $user->setNome($row['pedala_ai_nome']);
+        $user->setData_nasc($row['pedala_ai_data_nasc']);
+        $user->setEmail($row['pedala_ai_email']);
+        $user->setTelefone($row['pedala_ai_telefone']);
+        $user->setTipo_sangue($row['pedala_ai_tipo_sangue']);
+        $user->setAlergias($row['pedala_ai_tipo_alergias']);
+        $user->setContato_emer($row['pedala_ai_contato_emer']);
+        $user->setConvenio($row['pedala_ai_convenio']);
+        $user->setMedicacoes($row['pedala_ai_medicacoes']);
+        $user->setPassword($row['pedala_ai_password']);
+        return $user;
     }
 
 }

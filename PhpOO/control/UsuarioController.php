@@ -6,7 +6,7 @@ include_once "../dao/UsuarioDAO.php";
 
 //Instancia as Classes
 
-$usuario = new Usuario();
+$user = new PedalaAi();
 $usuariodao = new UsuarioDAO();
 
 //Pegar todos os dados passando via POST
@@ -15,12 +15,19 @@ $form = filter_input_array(INPUT_POST);
 
 //Se a operação for gravar entra nessa condição
 if(isset($_POST['cadastrar'])){
-   $usuario->setNome($form['nome']);
-   $usuario->setSobrenome($form['sobrenome']);
-   $usuario->setIdade($form['idade']);
-   $usuario->setSexo($form['sexo']);  
+   $user->setUser($form['pedala_ai_user']);
+   $user->setNome($form['pedala_ai_nome']);
+   $user->setData_nasc($form['pedala_ai_data_nasc']);
+   $user->setEmail($form['pedala_ai_email']);
+   $user->setTelefone($form['pedala_ai_telefone']);
+   $user->setTipo_sangue($form['pedala_ai_tipo_sangue']);  
+   $user->setAlergias($form['pedala_ai_alergias']);  
+   $user->setContato_emer($form['pedala_ai_contato_emer']);  
+   $user->setConvenio($form['pedala_ai_convenio']);  
+   $user->setMedicacoes($form['pedala_ai_medicacoes']);  
+   $user->setPassword($form['pedala_ai_password']);  
 
-   $usuariodao->create($usuario);
+   $usuariodao->create($user);
 
    header("Location: ../listar.php");
 }
@@ -28,20 +35,28 @@ if(isset($_POST['cadastrar'])){
 //Se a operação for deletar
 
 else if(isset($_GET['del'])){
-   $usuario->setId($_GET['del']);
-   $usuariodao->delete($usuario);
+   $user->setId($_GET['del']);
+   $usuariodao->delete($user);
    header("Location: ../listar.php");
 }
 
 //Se a operação for atualizar
+      //---------EDITAR AINDA NÃO ESTÁ FUNCIONAL------
 else if(isset($_POST['editar'])){
-   $usuario->setNome($form['nome']);
-   $usuario->setSobrenome($form['sobrenome']);
-   $usuario->setIdade($form['idade']);
-   $usuario->setSexo($form['sexo']);  
-   $usuario->setId($form['id']);
+   $user->setUser($form['pedala_ai_user']);
+   $user->setNome($form['pedala_ai_nome']);
+   $user->setData_nasc($form['pedala_ai_data_nasc']);
+   $user->setEmail($form['pedala_ai_email']);
+   $user->setTelefone($form['pedala_ai_telefone']);
+   $user->setTipo_sangue($form['pedala_ai_tipo_sangue']);  
+   $user->setAlergias($form['pedala_ai_alergias']);  
+   $user->setContato_emer($form['pedala_ai_contato_emer']);  
+   $user->setConvenio($form['pedala_ai_convenio']);  
+   $user->setMedicacoes($form['pedala_ai_medicacoes']);  
+   $user->setPassword($form['pedala_ai_password']);  
+   
 
-   $usuariodao->update($usuario);
+   $usuariodao->update($user);
    header("Location: ../listar.php");
 }
 
